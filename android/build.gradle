@@ -10,8 +10,10 @@ allprojects {
     }
 }
 
+def localProperties = new Properties()
+
 android {
-    compileSdkVersion 34
+    compileSdkVersion 36
     namespace 'com.dns_technologies.mlkit_scanner'
 
     sourceSets {

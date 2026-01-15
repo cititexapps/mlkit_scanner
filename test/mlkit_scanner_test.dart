@@ -11,6 +11,7 @@ void main() {
     setUpAll(() {
       TestWidgetsFlutterBinding.ensureInitialized();
 
+      // ignore: deprecated_member_use
       channel.setMockMethodCallHandler((call) async {
         switch (call.method) {
           default:
@@ -20,6 +21,7 @@ void main() {
     });
 
     tearDownAll(() {
+      // ignore: deprecated_member_use
       channel.setMockMethodCallHandler(null);
     });
 

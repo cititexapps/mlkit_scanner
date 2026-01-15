@@ -2,9 +2,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:mlkit_scanner/mlkit_scanner.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
   @override
   _MyAppState createState() => _MyAppState();
 }
@@ -56,7 +58,7 @@ class _MyAppState extends State<MyApp> {
           children: [
             Stack(
               children: [
-                Container(
+                SizedBox(
                   height: 200,
                   child: BarcodeScanner(
                     initialArguments: (defaultTargetPlatform == TargetPlatform.iOS)
