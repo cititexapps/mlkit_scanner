@@ -10,7 +10,7 @@ void main() {
   group('$CameraPreview', () {
     const channel = MethodChannel('mlkit_channel');
 
-    Widget _buildApp({
+    Widget buildApp({
       required Function() onCameraInitialized,
       Function(PlatformException)? onCameraInitializeError,
     }) {
@@ -46,16 +46,19 @@ void main() {
         var cameraInitialized = false;
         PlatformException? error;
 
-        await tester.pumpWidget(_buildApp(
+        await tester.pumpWidget(buildApp(
           onCameraInitialized: () => cameraInitialized = true,
           onCameraInitializeError: (e) => error = e,
         ));
 
         final platformView = find.byType(PlatformViewLink);
         await tester.pumpAndSettle();
-        expect(platformView, findsOneWidget, reason: "Не отображается нативный виджет");
-        expect(cameraInitialized, true, reason: 'Не вызвался колбек при успешной инициализации камеры');
-        expect(error, isNull, reason: "Не должно быть ошибки инициализации камеры");
+        expect(platformView, findsOneWidget,
+            reason: "Не отображается нативный виджет");
+        expect(cameraInitialized, true,
+            reason: 'Не вызвался колбек при успешной инициализации камеры');
+        expect(error, isNull,
+            reason: "Не должно быть ошибки инициализации камеры");
         debugDefaultTargetPlatformOverride = null;
       });
 
@@ -64,7 +67,7 @@ void main() {
         var cameraInitialized = false;
         PlatformException? error;
 
-        await tester.pumpWidget(_buildApp(
+        await tester.pumpWidget(buildApp(
           onCameraInitialized: () => cameraInitialized = true,
           onCameraInitializeError: (e) => error = e,
         ));
@@ -74,14 +77,18 @@ void main() {
 
         widget.onPlatformViewCreated!(1);
         await tester.pumpAndSettle();
-        expect(platformView, findsOneWidget, reason: "Не отображается нативный виджет");
-        expect(cameraInitialized, true, reason: 'Не вызвался колбек при успешной инициализации камеры');
-        expect(error, isNull, reason: "Не должно быть ошибки инициализации камеры");
+        expect(platformView, findsOneWidget,
+            reason: "Не отображается нативный виджет");
+        expect(cameraInitialized, true,
+            reason: 'Не вызвался колбек при успешной инициализации камеры');
+        expect(error, isNull,
+            reason: "Не должно быть ошибки инициализации камеры");
         debugDefaultTargetPlatformOverride = null;
       });
     });
 
-    testWidgets('Инициализация виджета при ошибке инициализации камеры', (tester) async {
+    testWidgets('Инициализация виджета при ошибке инициализации камеры',
+        (tester) async {
       channel.setMockMethodCallHandler((call) async {
         if (call.method == 'initCameraPreview') {
           throw PlatformException(code: "911", message: "Ошибочка");
@@ -90,16 +97,19 @@ void main() {
       var cameraInitialized = false;
       late PlatformException error;
 
-      await tester.pumpWidget(_buildApp(
+      await tester.pumpWidget(buildApp(
         onCameraInitialized: () => cameraInitialized = true,
         onCameraInitializeError: (e) => error = e,
       ));
 
       final platformView = find.byType(PlatformViewLink);
       await tester.pumpAndSettle();
-      expect(platformView, findsOneWidget, reason: "Не отображается нативный виджет");
-      expect(cameraInitialized, false, reason: 'Колбек инициализации не должен вызываться при ошибке');
-      expect(error.message, "Ошибочка", reason: "Должна вернуться ошибка инициализации камеры");
+      expect(platformView, findsOneWidget,
+          reason: "Не отображается нативный виджет");
+      expect(cameraInitialized, false,
+          reason: 'Колбек инициализации не должен вызываться при ошибке');
+      expect(error.message, "Ошибочка",
+          reason: "Должна вернуться ошибка инициализации камеры");
     });
   });
 }

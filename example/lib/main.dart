@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:mlkit_scanner/mlkit_scanner.dart';
@@ -187,11 +189,11 @@ class _MyAppState extends State<MyApp> {
             ),
             if (defaultTargetPlatform == TargetPlatform.iOS)
               TextButton(
+                onPressed: _setNextIosCamera,
                 child: Text(
                   '$_cameraIndex: $_cameraPosition, $_cameraType',
                   textAlign: TextAlign.center,
                 ),
-                onPressed: _setNextIosCamera,
               ),
           ],
         ),

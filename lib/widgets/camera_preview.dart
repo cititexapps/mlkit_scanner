@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
@@ -24,11 +26,11 @@ class CameraPreview extends StatefulWidget {
   final ScannerParameters? initialArguments;
 
   const CameraPreview({
-    Key? key,
+    super.key,
     required this.onCameraInitialized,
     this.initialArguments,
     this.onCameraInitializeError,
-  }) : super(key: key);
+  });
 
   @override
   _CameraPreviewState createState() => _CameraPreviewState();

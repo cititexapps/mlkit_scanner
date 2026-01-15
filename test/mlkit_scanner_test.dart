@@ -50,8 +50,8 @@ class TestApp extends StatelessWidget {
 
   const TestApp({
     this.child,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

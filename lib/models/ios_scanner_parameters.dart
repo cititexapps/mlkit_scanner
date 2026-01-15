@@ -1,4 +1,3 @@
-import 'package:mlkit_scanner/models/crop_rect.dart';
 import 'package:mlkit_scanner/models/ios_camera.dart';
 import 'package:mlkit_scanner/models/ios_camera_position.dart';
 import 'package:mlkit_scanner/models/ios_camera_type.dart';
@@ -12,8 +11,7 @@ class IosScannerParameters extends ScannerParameters {
   /// Optional initial camera.
   final IosCamera? camera;
 
-  const IosScannerParameters({this.zoom, this.camera, CropRect? cropRect})
-      : super(cropRect: cropRect);
+  const IosScannerParameters({this.zoom, this.camera, super.cropRect});
 
   @override
   Map<String, dynamic> toJson() {
